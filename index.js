@@ -343,7 +343,7 @@ async function starts() {
 						if (err) return reply('❌ *ERROR* ❌')
 						buffer = await getBuffer(res.url)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Citai Lolimu'})
-					})
+					}).catch(err => reply(`Gagal`))
 					break
 				case 'nsfwloli':
 					if (!isNsfw) return reply('❌ *FALSE* ❌')
@@ -660,11 +660,11 @@ async function starts() {
                                       if(ytmp3.result.error) return reply(`Terjadi kesalahan, mungkin url yang dikirim tidak valid`)
                                       if(ytmp3.result.info) return reply(ytmp3.result.info)
                                       if(Number(ytmp3.result.size.split(' MB')[0]) >= 35.00) return reply(`Maaf, ukuran file sudah melebihi batas maksimal yaitu 35mb, sedangkan file berukuran ${ytmp3.result.size}`)
-                                      const ytmp3_thumb = await getBuffer(ytmp3.result.imgUrl)
-                                      client.sendMessage(from,ytmp3_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp3.result.title}\n-> FileSize : ${ytmp3.result.size}\n\nSedang dikirim...`})
-                                      const ytmp3_audio = await getBuffer(ytmp3.result.UrlMp3)
+                                      const ytmp3_thumb = await getBuffer(ytmp3.result.imgUrl).catch(err => reply(`error`))
+                                      client.sendMessage(from,ytmp3_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp3.result.title}\n-> FileSize : ${ytmp3.result.size}\n\nSedang dikirim...`}).catch(err => reply(`error`))
+                                      const ytmp3_audio = await getBuffer(ytmp3.result.UrlMp3).catch(err => reply(`error`))
                                       const titel = ytmp3.result.title
-                                      client.sendMessage(from,ytmp3_audio,audio,{mimetype:'audio/mp4',filename:`${titel}.mp3`,quoted:mek})
+                                      client.sendMessage(from,ytmp3_audio,audio,{mimetype:'audio/mp4',filename:`${titel}.mp3`,quoted:mek}).catch(err => reply(`error`))
                                       break
                                 case 'ytmp4':
                                       if (args.length < 1) return reply(`Linknya mana sayang ? `)
@@ -673,11 +673,11 @@ async function starts() {
                                       if(ytmp4.result.error) return reply(`Terjadi kesalahan, mungkin url yang dikirim tidak valid`)
                                       if(ytmp4.result.info) return reply(ytmp4.result.info)
                                       if(Number(ytmp4.result.size.split(' MB')[0]) >= 35.00) return reply(`Maaf, ukuran file sudah melebihi batas maksimal yaitu 35mb, sedangkan file berukuran ${ytmp4.result.size}`)
-                                      const ytmp4_thumb = await getBuffer(ytmp4.result.imgUrl)
-                                      client.sendMessage(from,ytmp4_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp4.result.title}\n-> FileSize : ${ytmp4.result.size}\n\nSedang dikirim...`})
-                                      const ytmp4_video = await getBuffer(ytmp4.result.UrlVideo)
-                                      const titel2 = ytmp4.result.title
-                                      client.sendMessage(from,ytmp4_video,video,{mimetype:'video/mp4',filename:`${titel2}.mp4`,quoted:mek})
+                                      const ytmp4_thumb = await getBuffer(ytmp4.result.imgUrl).catch(err => reply(`error`))
+                                      client.sendMessage(from,ytmp4_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp4.result.title}\n-> FileSize : ${ytmp4.result.size}\n\nSedang dikirim...`}).catch(err => reply(`error`))
+                                      const ytmp4_video = await getBuffer(ytmp4.result.UrlVideo).catch(err => reply('error'))
+                                      const titel = ytmp4.result.title
+                                      client.sendMessage(from,ytmp4_video,video,{mimetype:'video/mp4',filename:`${titel}.mp4`,quoted:mek}).catch(err => reply('error'))
                                       break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
