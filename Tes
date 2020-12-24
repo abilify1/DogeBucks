@@ -607,13 +607,13 @@ async function starts() {
                                 case 'matrixtext':
                                       if (args.length < 1) return reply('textnya mana sayang ?')
                                       reply(mess.wait)
-                                      const res = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/matrixtext?text=${body.slice(12)}`)
+                                      const res = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/matrixtext?text=${encodeURIComponent(body.slice(12))}`)
                                       client.sendMessage(from,res,image,{quoted:mek,caption:`[!] Sukses membuat matrix text effect dengan text *${body.slice(12)}*`})
                                       break
                                 case 'dropwatertext':
                                       if (args.length < 1) return reply('teksnya mana sayang?')
                                       reply(mess.wait)
-                                      const suek = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/dropwatertext?text=${body.slice(15)}`)
+                                      const suek = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/dropwatertext?text=${encodeURIComponent(body.slice(15))}`)
                                       client.sendMessage(from,suek,image,{quoted:mek,caption:`[!] Sukses membuat drop water text effect dengan text *${body.slice(15)}*`})
                                       break
                                 case 'anime':
@@ -628,7 +628,7 @@ async function starts() {
                                 case 'tahta':
                                       if (args.length < 1) return reply('mana teksnya sayang ? ')
                                       reply(mess.wait)
-                                      const tahta = await getBuffer(`https://api.vhtear.com/hartatahta?text=${body.slice(7)}&apikey=Abil_Seno2k20`)
+                                      const tahta = await getBuffer(`https://api.vhtear.com/hartatahta?text=${encodeURIComponent(body.slice(7))}&apikey=Abil_Seno2k20`)
                                       client.sendMessage(from,tahta,image,{quoted:mek,caption:`[!] Sukses membuat harta tahta *${body.slice(7)}*`})
                                       break
                                 case 'play':
@@ -641,6 +641,17 @@ async function starts() {
                                      const play_audio = await getBuffer(play.result.mp3)
                                      client.sendMessage(from,play_audio,audio,{quoted:mek})
                                      break
+                                case 'luxurytext':
+                                      if (args.length < 1) return reply('teksnya mana sayang?')
+                                      reply(mess.wait)
+                                      const suek1 = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/luxurytext?text=${encodeURIComponent(body.slice(body.lenth+2))}`)
+                                      client.sendMessage(from,suek1,image,{quoted:mek,caption:`[!] Sukses membuat luxury text effect dengan text *${body.slice(body.length+2)}*`})
+                                case 'gluetext':
+                                      if (args.length < 1) return reply('teksnya mana sayang?')
+                                      reply(mess.wait)
+                                      const suek2 = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/dropwatertext?text=${encodeURIComponent(body.slice(body.length+2))}`)
+                                      client.sendMessage(from,suek2,image,{quoted:mek,caption:`[!] Sukses membuat drop water text effect dengan text *${body.slice(body.length+2)}*`})
+                                      break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
