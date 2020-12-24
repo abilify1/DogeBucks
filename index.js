@@ -679,6 +679,16 @@ async function starts() {
                                       const titel2 = ytmp4.result.title
                                       client.sendMessage(from,ytmp4_video,video,{mimetype:'video/mp4',filename:`${titel2}.mp4`,quoted:mek}).catch(err => reply('error'))
                                       break
+                                case 'joox':
+                                      if (args.length < 1) return reply(`apa yang mau dicari, tong ? `)
+                                      reply(mess.wait)
+                                      const joox = await fetchJson(`https://api.vhtear.com/music?query=${encodeURIComponent(body.slice(6))}&apikey=Abil_Seno2k20`)
+                                      const joox_thumb = await getBuffer(joox.result[0].linkImg).catch(err => reply('error'))
+                                      client.sendMessage(from,joox_thumb,image,{quoted:mek,caption:`-> Judul : ${joox.result[0].judul}\n-> Album : ${joox.result[0].album}\n-> Penyanyi : ${joox.result[0].penyanyi}\n-> Durasi : ${joox.result[0].duration}\n-> FileSize : ${joox.result[0].filesize}\n\nSedang dikirim...`}).catch(err => reply(`error`))
+                                      const joox_mp3 = await getBuffer(joox.result[0].linkMp3)
+                                      const titel3 = joox.result[0].judul
+                                      client.sendMessage(from,joox_mp3,audio,{mimetype:'audio/mp4',filename:`${titel3}.mp3`,quoted:mek})
+                                      break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
