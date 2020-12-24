@@ -662,7 +662,7 @@ async function starts() {
                                       const ytmp3_thumb = await getBuffer(ytmp3.result.imgUrl)
                                       client.sendMessage(from,ytmp3_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp3.result.title}\n-> FileSize : ${ytmp3.result.size}\n\nSedang dikirim...`})
                                       const ytmp3_audio = await getBuffer(ytmp3.result.UrlMp3)
-                                      client.sendMessage(from,ytmp3_audio,audio,{quoted:mek})
+                                      client.sendMessage(from,ytmp3_audio,audio,{mimetype:'audio/mp4',filename:`${play.result.title}.mp3`,quoted:mek})
                                       break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
