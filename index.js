@@ -218,15 +218,19 @@ async function starts() {
 							})
 							.on('error', function (err) {
 								console.log(`Error : ${err}`)
-t								fs.unlinkSync(media).catch(err => reply('error'))
-								reply(mess.error.stick)
+                                                                try {
+    								 fs.unlinkSync(media)
+								 reply(mess.error.stick)
+                                                                } catch (err) { return reply('error') }
 							})
 							.on('end', function () {
 								console.log('Finish')
 								buff = fs.readFileSync(ran)
 								client.sendMessage(from, buff, sticker, {quoted: mek})
-								fs.unlinkSync(media).catch(err => reply('error'))
-								fs.unlinkSync(ran).catch(err => reply('error'))
+                                                                try {
+								 fs.unlinkSync(media)
+								 fs.unlinkSync(ran)
+                                                                } catch (err) { return reply('error') }
 							})
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
@@ -243,7 +247,9 @@ t								fs.unlinkSync(media).catch(err => reply('error'))
 							})
 							.on('error', function (err) {
 								console.log(`Error : ${err}`)
-								fs.unlinkSync(media).catch(err => reply('error'))
+                                                                try {
+ 								 fs.unlinkSync(media)
+                                                                } catch (err) { return reply('error') }
 								tipe = media.endsWith('.mp4') ? 'video' : 'gif'
 								reply(`❌ Gagal, pada saat mengkonversi ${tipe} ke stiker`)
 							})
@@ -251,8 +257,10 @@ t								fs.unlinkSync(media).catch(err => reply('error'))
 								console.log('Finish')
 								buff = fs.readFileSync(ran)
 								client.sendMessage(from, buff, sticker, {quoted: mek})
-								fs.unlinkSync(media).catch(err => reply('error'))
-								fs.unlinkSync(ran).catch(err => reply(`error`))
+                                                                try {
+								 fs.unlinkSync(media)
+								 fs.unlinkSync(ran)
+                                                                } catch (err) { return reply('error') }
 							})
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
