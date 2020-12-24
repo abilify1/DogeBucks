@@ -659,6 +659,7 @@ async function starts() {
                                       const ytmp3 = await fetchJson(`https://api.vhtear.com/ytdl?link=${encodeURIComponent(body.slice(7))}&apikey=Abil_Seno2k20`)
                                       if(ytmp3.result.error) return reply(`Terjadi kesalahan, mungkin url yang dikirim tidak valid`)
                                       if(Number(ytmp3.result.size.split(' MB')[0]) >= 35.00) return reply(`Maaf, ukuran file sudah melebihi batas maksimal yaitu 35mb, sedangkan file berukuran ${ytmp3.result.size}`)
+                                      const ytmp3 = await fetchJson(`https://api.vhtear.com/ytdl?link=${encodeURIComponent(body.slice(7))}&apikey=Abil_Seno2k20`)
                                       const ytmp3_thumb = await getBuffer(ytmp3.result.imgUrl)
                                       client.sendMessage(from,ytmp3_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp3.result.title}\n-> FileSize : ${ytmp3.result.size}\n\nSedang dikirim...`})
                                       const ytmp3_audio = await getBuffer(ytmp3.result.UrlMp3)
