@@ -646,11 +646,23 @@ async function starts() {
                                       reply(mess.wait)
                                       const suek1 = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/luxurytext?text=${encodeURIComponent(body.slice(12))}`)
                                       client.sendMessage(from,suek1,image,{quoted:mek,caption:`[!] Sukses membuat luxury text effect dengan text *${body.slice(12)}*`})
+                                      break
                                 case 'gluetext':
                                       if (args.length < 1) return reply('teksnya mana sayang?')
                                       reply(mess.wait)
                                       const suek2 = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/gluetext?text=${encodeURIComponent(body.slice(10))}`)
                                       client.sendMessage(from,suek2,image,{quoted:mek,caption:`[!] Sukses membuat glue text effect dengan text *${body.slice(10)}*`})
+                                      break
+                                case 'ytmp3':
+                                      if (args.length < 1) return reply(`Linknya mana sayang ? `)
+                                      reply(mess.wait)
+                                      const ytmp3 = await fetchJson(`https://api.vhtear.com/ytdl?link=${encodeURIComponent(body.slice(7))}&apikey=Abil_Seno2k20`)
+                                      if(ytmp3.result.error) return reply(`Terjadi kesalahan, mungkin url yang dikirim tidak valid`)
+                                      if(Number(ytmp3.result.filesize.split(' MB')[0]) >= 35.00) return reply(`Maaf, ukuran file sudah melebihi batas maksimal yaitu 35mb, sedangkan file berukuran ${ytmp3.result.filesize}`)
+                                      const ytmp3_thumb = await getBuffer(ytmp3.result.imgUrl)
+                                      client.sendMessage(from,ytmp3_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp3.result.title}\n-> FileSize : ${ytmp3.result.filesize}\n\nSedang dikirim...`})
+                                      const ytmp3_audio = await getBuffer(ytmp3.result.UrlMp3)
+                                      client.sendMessage(from,ytmp3_audio,audio,{quoted:mek})
                                       break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
