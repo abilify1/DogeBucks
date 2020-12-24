@@ -650,7 +650,7 @@ async function starts() {
                                       if (args.length < 1) return reply('teksnya mana sayang?')
                                       reply(mess.wait)
                                       const suek2 = await getBuffer(`https://api-anoncybfakeplayer.herokuapp.com/textpro/dropwatertext?text=${encodeURIComponent(body.slice(body.length+2))}`)
-                                      client.sendMessage(from,suek2,image,{quoted:mek,caption:`[!] Sukses membuat drop water text effect dengan text *${body.slice(body.length+2)}*`})
+                                      client.sendMessage(from,suek2,image,{quoted:mek,caption:`[!] Sukses membuat glue text effect dengan text *${body.slice(body.length+2)}*`})
                                       break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
