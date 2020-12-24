@@ -631,6 +631,13 @@ async function starts() {
                                       const tahta = await getBuffer(`https://api.vhtear.com/hartatahta?text=${body.slice(7)}&apikey=Abil_Seno2k20`)
                                       client.sendMessage(from,tahta,image,{quoted:mek,caption:`[!] Sukses membuat harta tahta *${body.slice(7)}*`})
                                       break
+                                case 'texttogif':
+                                case 'ttogif':
+                                case 'tgif':
+                                     if (args.length < 1) return reply('teksnya mana sayang ? ')
+                                     reply(mess.wait)
+                                     const tgif = await getBuffer(`https://api.vhtear.com/textxgif?text=${body.slice(body.length+2)}&apikey=Abil_Seno2k20`)
+                                     client.sendMessage(from,tgif,sticker,{quoted:mek})
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
