@@ -676,8 +676,8 @@ async function starts() {
                                       const ytmp4_thumb = await getBuffer(ytmp4.result.imgUrl).catch(err => reply(`error`))
                                       client.sendMessage(from,ytmp4_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp4.result.title}\n-> FileSize : ${ytmp4.result.size}\n\nSedang dikirim...`}).catch(err => reply(`error`))
                                       const ytmp4_video = await getBuffer(ytmp4.result.UrlVideo).catch(err => reply('error'))
-                                      const titel = ytmp4.result.title
-                                      client.sendMessage(from,ytmp4_video,video,{mimetype:'video/mp4',filename:`${titel}.mp4`,quoted:mek}).catch(err => reply('error'))
+                                      const titel2 = ytmp4.result.title
+                                      client.sendMessage(from,ytmp4_video,video,{mimetype:'video/mp4',filename:`${titel2}.mp4`,quoted:mek}).catch(err => reply('error'))
                                       break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
