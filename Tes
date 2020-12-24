@@ -637,7 +637,7 @@ async function starts() {
                                      const play = await fetchJson(`https://api.vhtear.com/ytmp3?query=${body.slice(6)}&apikey=Abil_Seno2k20`)
                                      if(play.result.error) return reply(`lagu tidak ditemukan!`)
                                      const play_thumb = await getBuffer(play.result.image)
-                                     client.sendMessage(from,play_thumb,image,{quoted:mek,caption:`v. Title : ${ply.result.title}\nv. Duration : ${ply.result.duration}\nv. Size : ${ply.result.size}\nv. Url : ${ply.result.url}\n\nSedang dikirim...`})
+                                     client.sendMessage(from,play_thumb,image,{quoted:mek,caption:`v. Title : ${play.result.title}\nv. Duration : ${play.result.duration}\nv. Size : ${play.result.size}\nv. Url : ${play.result.url}\n\nSedang dikirim...`})
                                      const play_audio = await getBuffer(play.result.mp3)
                                      client.sendMessage(from,play_audio,audio,{quoted:mek})
                                      break
