@@ -661,8 +661,10 @@ async function starts() {
                                       if(Number(ytmp3.result.size.split(' MB')[0]) >= 35.00) return reply(`Maaf, ukuran file sudah melebihi batas maksimal yaitu 35mb, sedangkan file berukuran ${ytmp3.result.size}`)
                                       const ytmp3_thumb = await getBuffer(ytmp3.result.imgUrl)
                                       client.sendMessage(from,ytmp3_thumb,image,{quoted:mek,caption:`-> Title : ${ytmp3.result.title}\n-> FileSize : ${ytmp3.result.size}\n\nSedang dikirim...`})
-                                      const ytmp3_audio = await getBuffer(ytmp3.result.UrlMp3)
-                                      const titel = await ytmp3.result.title
+                                      const getAudio = await fetchJson(`https://api-anoncybfakeplayer.herokuapp.com/ytmp3?url=${encodeURIComponent(body.slice(7))}`)
+                                      const getAudio_url = await getAudio.result[0].url
+                                      const ytmp3_audio = await getBuffer(getAudio_url)
+                                      const titel = ytmp3.result.title
                                       client.sendMessage(from,ytmp3_audio,audio,{mimetype:'audio/mp4',filename:`titel.mp3`,quoted:mek})
                                       break
 				default:
