@@ -751,8 +751,54 @@ async function starts() {
                                         const buff = fs.readFileSync(ran)
                                         client.sendMessage(from,buff,audio,{quoted:mek,mimetype:'audio/mpeg',filename:`${ran}.mp3`})
                                         fs.unlinkSync(media)
+                                        fs.unlinkSync(ran)
                                        })
                                       } else { return reply(`Untuk menconvert video menjadi audio/mp3\nKirim video dengan caption .tomp3, atau tag video yang sudah dikirim!`) }
+                                      break
+                                case 'twitter':
+                                    try {
+                                     if (args.length < 1) return reply('linknya mana sayang? ')
+                                     reply(mess.wait)
+                                     const tw = await fetchJson(`https://api.vhtear.com/twitter?link=${body.slice(9)}&apikey=Abil_Seno2k20`)
+                                     if(tw.result.error) return reply(tw.result.error)
+                                     const tw_vid = await getBuffer(tw.result.urlVideo)
+                                     client.sendMessage(from,tw_vid,video,{quoted:mek,caption:tw.result.desk})
+                                     break
+                                    } catch (err) { return reply('error') }
+                                case 'facebook':
+                                    try {
+                                     if (args.length < 1) return reply('linknya mana sayang ? ')
+                                     reply(mess.wait)
+                                     const fb = await fetchJson(`https://api.vhtear.com/fbdl?link=${body.slice(10)}&apikey=Abil_Seno2k20`)
+                                     if(fb.result.VideoUrl.includes('Link video')) return reply('[!] URL yang dikirim tidak valid, atau di privasi')
+                                     const fb_vid = await getBuffer(fb.result.UrlVideo)
+                                     client.sendMessage(from,fb_vid,video,{quoted:mek,caption:'[!] Berhasil √'})
+                                     break
+                                   } catch (err) { return reply('error') }
+                                case 'igstalk':
+                                    try {
+                                     if (args.length < 1) return reply('usernamenya manah ?? ')
+                                     reply(mess.wait)
+                                     const igs = await fetchJson(`https://api.vhtear.com/igprofile?query=${encodeURIComponent(body.slice(10))}&apikey=Abil_Seno2k20`)
+                                     if (igs.result == null || igs.result == undefined) return reply('[!] Username salah !!')
+                                     if (igs.result.is_private == true) { var privat = "Ya" }
+                                     else if (igs.result.is_private == false) { var privat = "Tidak" }
+                                     const igs_pic = await getBuffer(igs.result.picture)
+                                     client.sendMessage(from,igs_pic,image,{quoted:mek,caption:`-> Username : @${igs.result.username}\n-> Nama : ${igs.result.full_name}\n-> Follower : ${igs.result.follower}\n-> Following : ${igs.result.follow}\n-> Jumlah Postingan : ${igs.result.post_count}\n-> Ini Private ? ${privat}`})
+                                    } catch (err) { return reply('error') }
+                                case 'igdown':
+                                   try {
+                                    if (args.length < 1) return reply('mana linknya sayang ? ')
+                                    reply(mess.wait)
+                                    const igd = await fetchJson(`https://api.vhtear.com/instadl?link=${body.slice(8)}&apikey=Abil_Seno2k20`)
+                                    reply(`-> Caption : ${igd.result.caption}\n-> Pengunggah : ${igd.result.owner_username}\n-> Jumlah Slide : ${igd.result.post.length}\n\nSedang dikirim...`)
+                                    for (let igd_post of igd.result.post){
+                                     const igd_buff = await getBuffer(igd_post.urlDownload)
+                                     if(igd_post.type == "image") {
+                                      client.sendMessage(from,idg_buff,image,{quoted:mek,caption:`-> Type : ${igd_post.type}`})
+                                     } else { client.sendMessage(from,igd_buff,video,{quoted:mek,caption:`-> Type : ${igd_post.type}`}) }
+                                    }
+                                   } catch (err) { return reply('error') }
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
