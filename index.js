@@ -798,7 +798,10 @@ async function starts() {
                                       client.sendMessage(from,igd_buff,image,{quoted:mek,caption:`-> Type : ${igd_post.type}`})
                                      } else { client.sendMessage(from,igd_buff,video,{quoted:mek,caption:`-> Type : ${igd_post.type}`}) }
                                     }
-                                   } catch (err) { return reply('error') }
+                                   } catch (err) {
+                                    console.log(err)
+                                    return reply('error')
+                                   }
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
