@@ -735,7 +735,7 @@ async function starts() {
                                       if (args.length < 1) return reply('teksnya mana sayang ? ')
                                       reply(mess.wait)
                                       const thunder = await getBuffer(`https://api.vhtear.com/thundertext?text=${encodeURIComponent(body.slice(13))}&apikey=Abil_Seno2k20`)
-                                      client.sendMessage(from,thunder,image,{quoted:mek,caption:`[!] Sukses membuat thunder text effects dengan text *${body.slice(13)}`})
+                                      client.sendMessage(from,thunder,image,{quoted:mek,caption:`[!] Sukses membuat thunder text effects dengan text *${body.slice(13)}*`})
                                       break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
