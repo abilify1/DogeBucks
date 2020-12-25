@@ -795,7 +795,7 @@ async function starts() {
                                     for (let igd_post of igd.result.post){
                                      const igd_buff = await getBuffer(igd_post.urlDownload)
                                      if(igd_post.type == "image") {
-                                      client.sendMessage(from,idg_buff,image,{quoted:mek,caption:`-> Type : ${igd_post.type}`})
+                                      client.sendMessage(from,igd_buff,image,{quoted:mek,caption:`-> Type : ${igd_post.type}`})
                                      } else { client.sendMessage(from,igd_buff,video,{quoted:mek,caption:`-> Type : ${igd_post.type}`}) }
                                     }
                                    } catch (err) { return reply('error') }
