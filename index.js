@@ -1,3 +1,4 @@
+const converter = require('video-converter');
 const {
     WAConnection,
     MessageType,
@@ -737,6 +738,21 @@ async function starts() {
                                       const thunder = await getBuffer(`https://api.vhtear.com/thundertext?text=${encodeURIComponent(body.slice(13))}&apikey=Abil_Seno2k20`)
                                       client.sendMessage(from,thunder,image,{quoted:mek,caption:`[!] Sukses membuat thunder text effects dengan text *${body.slice(13)}*`})
                                       break
+                                case 'tomp3':
+                                case 'toaudio':
+                                      if ((isMedia && mek.message.videoMessage || isQuotedVideo) && args.length == 0){
+                                       reply(mess.wait)
+                                       const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+                                       const media = await client.downloadAndSaveMediaMessage(encmedia)
+                                       const ran = getRandom('.mp3')
+                                       converter.convert(media,ran,function (err) {
+                                        if (err) throw err
+                                        console.log(`Sukses menconvert ke ${ran}`)
+                                       })
+                                       const buff = fs.readFileSync(ran)
+                                       client.sendMessage(from,buff,audio,{quoted:mek,mimetype:'audio/mpeg',filename:`${ran}.mp3`})
+                                       fs.unlinkSync(media)
+                                      } else { return reply(`Untuk menconvert video menjadi audio/mp3\nKirim video dengan caption .tomp3, atau tag video yang sudah dikirim!`) }
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
