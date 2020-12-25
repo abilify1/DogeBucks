@@ -731,6 +731,12 @@ async function starts() {
                                       const titel3 = joox.result[0].judul
                                       client.sendMessage(from,joox_mp3,audio,{mimetype:'audio/mp4',filename:`${titel3}.mp3`,quoted:mek})
                                       break
+                                case 'thundertext':
+                                      if (args.length < 1) return reply('teksnya mana sayang ? ')
+                                      reply(mess.wait)
+                                      const thunder = await getBuffer(`https://api.vhtear.com/thundertext?text=${encodeURIComponent(body.slice(13))}&apikey=Abil_Seno2k20`)
+                                      client.sendMessage(from,thunder,image,{quoted:mek,caption:`[!] Sukses membuat thunder text effects dengan text *${body.slice(13)}`})
+                                      break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
