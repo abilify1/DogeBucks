@@ -366,21 +366,21 @@ async function starts() {
                                       } catch (err) { return reply('error') }
 				case 'loli':
                                       try {
-					loli.getSFWLoli(async (err, res) => {
-						if (err) return reply('❌ *ERROR* ❌')
-						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Citai Lolimu'})
-					})
+					//loli.getSFWLoli(async (err, res) => {
+						return reply('❌ *ERROR* ❌')
+						//buffer = await getBuffer(res.url)
+						//client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Citai Lolimu'})
+					//})
 					break
                                       } catch (err) { return reply('error') }
 				case 'nsfwloli':
                                       try {
-					if (!isNsfw) return reply('❌ *FALSE* ❌')
-					loli.getNSFWLoli(async (err, res) => {
-						if (err) return reply('❌ *ERROR* ❌')
-						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
-					})
+					//if (!isNsfw) return reply('❌ *FALSE* ❌')
+					//loli.getNSFWLoli(async (err, res) => {
+						return reply('❌ *ERROR* ❌')
+					//	buffer = await getBuffer(res.url)
+					//	client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
+					//})
 					break
                                       } catch (err) { return reply('error') }
 				case 'hilih':
