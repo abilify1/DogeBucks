@@ -748,10 +748,10 @@ async function starts() {
                                        converter.convert(media,ran,function (err) {
                                         if (err) throw err
                                         console.log(`Sukses menconvert ke ${ran}`)
+                                        const buff = fs.readFileSync(ran)
+                                        client.sendMessage(from,buff,audio,{quoted:mek,mimetype:'audio/mpeg',filename:`${ran}.mp3`})
+                                        fs.unlinkSync(media)
                                        })
-                                       const buff = fs.readFileSync(ran)
-                                       client.sendMessage(from,buff,audio,{quoted:mek,mimetype:'audio/mpeg',filename:`${ran}.mp3`})
-                                       fs.unlinkSync(media)
                                       } else { return reply(`Untuk menconvert video menjadi audio/mp3\nKirim video dengan caption .tomp3, atau tag video yang sudah dikirim!`) }
 				default:
 					if (isGroup && isSimi && budy != undefined) {
