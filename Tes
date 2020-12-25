@@ -59,7 +59,11 @@ desc : create image harta tahta wanita
 usage : ${prefix}tahta <teks>\n
 command : *${prefix}play*
 desc : playing a music from youtube
-usage : {prefix}play <query>\n
+usage : ${prefix}play <query>\n
+command : *${prefix}joox*
+desc : playing a music from joox
+usage : ${prefix}joox <query>
+examples : ${prefix}joox someone loved\n
 > *Group Comands* <
 command : *${prefix}linkgroup*
 desc : take the group link
@@ -73,6 +77,27 @@ command : *${prefix}simih*
 desc : activate simi mode in the group
 usage : *${prefix}simih 1* to activate simi mode and *${prefix}simih 0* to deactivate simi mode
 note : This command can be used if you are a group admin\n
+> *Text Commands* <
+command : *${prefix}matrixtext*
+desc : create image with matrix style effects
+usage : ${prefix}matrixtext <text>
+examples : ${prefix}matrixtext Bot\n
+command : *${prefix}dropwatertext*
+desc : create image with drop water text effects
+usage : ${prefix}dropwatertext <text>
+examples : ${prefix}dropwatertext Bot\n
+command : *${prefix}luxurytext*
+desc : create image with luxury text effects
+usage : ${prefix}luxurytext <text>
+examples : ${prefix}luxurytext Bot\n
+command : *${prefix}gluetext*
+desc : create image with glue text effects
+usage : ${prefix}gluetext <text>
+examples : ${prefix}gluetext Bot\n
+command : *${prefix}thundertext*
+desc : create image with thunder text effects
+usage : ${prefix}thundertext <text>
+examples : ${prefix}thundertext Bot\n
 `
 }
 
