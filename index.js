@@ -854,8 +854,11 @@ async function starts() {
                                       const igtv_thumb = await getBuffer(igtv.result[Number(args[1])].urlImage)
                                       client.sendMessage(from,igtv_thumb,image,{quoted:mek,caption:`-> Caption : ${igtv.result.igTv[Number(args[1])].caption}`})
                                       const igtv_vid = await getBuffer(igtv.result.igTv[Number(args[1])].urlVideo)
-                                      client.sendMessage(from,igtv_vid,video,{quoted:mek,caption:`[!] Berhasil ✓\n-> Nomor : ${args[2]}`})
-                                     } catch (err) { return reply(`[!] IgTv dengan nomor *${args[1]}*, tidak ditemukan di username *${args[0]}*`) }
+                                      client.sendMessage(from,igtv_vid,video,{quoted:mek,caption:`[!] Berhasil ✓\n-> Nomor : ${args[1]}`})
+                                     } catch (err) { 
+                              console.log(err)
+                              return reply(`[!] IgTv dengan nomor *${args[1]}*, tidak ditemukan di username *${args[0]}*`) 
+                                     }
                                    } else { return reply(`[!] Format salah!!`) }
                                  } catch (err) {
                                    console.log(err)
