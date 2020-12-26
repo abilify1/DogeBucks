@@ -771,7 +771,7 @@ async function starts() {
                                      reply(mess.wait)
                                      const fb = await fetchJson(`https://api.vhtear.com/fbdl?link=${body.slice(10)}&apikey=Abil_Seno2k20`)
                                      if(fb.result.VideoUrl.includes('Link video')) return reply('[!] URL yang dikirim tidak valid, atau di privasi')
-                                     const fb_vid = await getBuffer(fb.result.UrlVideo)
+                                     const fb_vid = await getBuffer(fb.result.VideoUrl)
                                      client.sendMessage(from,fb_vid,video,{quoted:mek,caption:'[!] Berhasil √'})
                                      break
                                    } catch (err) { return reply('error') }
