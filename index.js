@@ -837,7 +837,7 @@ async function starts() {
                                    if (args.length < 1) return reply(`usernamenya mana sayang ? `)
                                    if (args.length === 1){
                                     const igtv = await fetchJson(`https://api.vhtear.com/igtv?query=${encodeURIComponent(args[0])}&apikey=Abil_Seno2k20`)
-                                    if(igtv.includes('error message')) return reply('[!] Username salah!')
+                                    if(igtv.toString().includes('error message')) return reply('[!] Username salah!')
                                     if(igtv.result.igTv.length === 0) return reply(`[!] Username yang dituju tidak memiliki igtv!`)
                                     igtv_cap = `Saya menemukan *${igtv.result.igTv.length}* instagram tv, di username *${args[0]}*\n=================\n`
                                     no = 0
