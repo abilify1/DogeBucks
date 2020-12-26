@@ -845,8 +845,11 @@ async function starts() {
                                      igtv_cap += `-> Nomor : ${no}\n-> Untuk mendownload : .igtv ${args[0]} ${no}`
                                      no += 1
                                     }
+                                    reply(igtv_cap)
                                    } else if(args.length === 2){
                                      const igtv = await fetchJson(`https://api.vhtear.com/igstory?query=${args[0]}&apikey=Abil_Seno2k20`)
+                                     if(igtv.toString().includes('error message')) return reply('[!] Username salah!')
+                                     if(igtv.result.igTv.length === 0) return reply(`[!] Username yang dituju tidak memiliki igtv!`)
                                      try {
                                       const igtv_thumb = await getBuffer(igtv.result[Number(args[1])].urlImage)
                                       client.sendMessage(from,igtv_thumb,image,{quoted:mek,caption:`-> Caption : ${igtv.result.igTv[Number(args[1])].caption}`})
