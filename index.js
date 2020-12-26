@@ -851,7 +851,7 @@ async function starts() {
                                      if(igtv.toString().includes('error message')) return reply('[!] Username salah!')
                                      if(igtv.result.igTv.length === 0) return reply(`[!] Username yang dituju tidak memiliki igtv!`)
                                      try {
-                                      const igtv_thumb = await getBuffer(igtv.result[Number(args[1])].urlImage)
+                                      const igtv_thumb = await getBuffer(igtv.result.igTv[Number(args[1])].urlImage)
                                       client.sendMessage(from,igtv_thumb,image,{quoted:mek,caption:`-> Caption : ${igtv.result.igTv[Number(args[1])].caption}`})
                                       const igtv_vid = await getBuffer(igtv.result.igTv[Number(args[1])].urlVideo)
                                       client.sendMessage(from,igtv_vid,video,{quoted:mek,caption:`[!] Berhasil ✓\n-> Nomor : ${args[1]}`})
