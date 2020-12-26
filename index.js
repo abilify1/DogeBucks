@@ -842,7 +842,7 @@ async function starts() {
                                     igtv_cap = `Saya menemukan *${igtv.result.igTv.length}* instagram tv, di username *${args[0]}*\n=================\n`
                                     no = 0
                                     for (let kntl of igtv.result.igTv){
-                                     igtv_cap += `-> Nomor : ${no}\n-> Untuk mendownload : .igtv ${args[0]} ${no}`
+                                     igtv_cap += `-> Nomor : ${no}\n-> Untuk mendownload : .igtv ${args[0]} ${no}\n=================\n`
                                      no += 1
                                     }
                                     reply(igtv_cap)
