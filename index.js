@@ -847,7 +847,7 @@ async function starts() {
                                     }
                                     reply(igtv_cap)
                                    } else if(args.length === 2){
-                                     const igtv = await fetchJson(`https://api.vhtear.com/igstory?query=${args[0]}&apikey=Abil_Seno2k20`)
+                                     const igtv = await fetchJson(`https://api.vhtear.com/igtv?query=${encodeURIComponent(args[0])}&apikey=Abil_Seno2k20`)
                                      if(igtv.toString().includes('error message')) return reply('[!] Username salah!')
                                      if(igtv.result.igTv.length === 0) return reply(`[!] Username yang dituju tidak memiliki igtv!`)
                                      try {
