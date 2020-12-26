@@ -814,11 +814,20 @@ async function starts() {
                                      igs_cap = `Saya menemukan *${igs1.result.story.itemlist.length}* story, di username *${igs1.result.owner_username}*\n=================\n`
                                      no = 1
                                      for (let mmk of igs1.result.story.itemlist){
-                                      igs_cap += `-> Type : ${mmk.type}\n-> Untuk mendownload : *.igstory ${igs1.result.owner_username} ${no}*\n=================`
+                                      igs_cap += `-> Type : ${mmk.type}\n-> Untuk mendownload : *.igstory ${igs1.result.owner_username} ${no}*\n=================\n`
                                       no += 1
                                      }
                                      reply(igs_cap)
-                                    }
+                                    } else if (args.length === 2) {
+                                      const igs1 = await fetchJson(`https://api.vhtear.com/igstory?query=${args[0]}&apikey=Abil_Seno2k20`)
+                                      if (igs1.result.status == "error message") return reply(`[!] Username salah!!`)
+                                      if (igs1.result.story.itemlist == undefined || igs1.result.story.itemlist == null) return reply(`[!] Username yang dituju tidak memiliki story`)
+                                      try {
+                                       const igs1_buff = await getBuffer(igs1.result.story.itemlist[Number(args[1])].urlDownload)
+                                       if(igs1.result.story.itemlist[Number(args[1])].type == "video") return client.sendMessage(from,igs1_buff,video,{quoted:mek,caption:`[!] Berhasil ✓\n-> Nomor : ${args[1]}`})
+                                       if(igs1.result.story.itemlist[Number(args[1])].type == "image") return client.sendMessage(from,igs1_buff,image,{quoted:mek,caption:`[!] Berhasil ✓\n-> Nomor : ${args[1]}`})
+                                      } catch (err) { return reply(`[!] Story dengan nomor *${args[1]}* tidak tersedia di username *${args[0]}*`) }
+                                   }
                                    } catch (err) {
                                      console.log(err)
                                      return reply('error')
