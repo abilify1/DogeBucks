@@ -827,11 +827,37 @@ async function starts() {
                                        if(igs1.result.story.itemlist[Number(args[1])].type == "video") return client.sendMessage(from,igs1_buff,video,{quoted:mek,caption:`[!] Berhasil ✓\n-> Nomor : ${args[1]}`})
                                        if(igs1.result.story.itemlist[Number(args[1])].type == "image") return client.sendMessage(from,igs1_buff,image,{quoted:mek,caption:`[!] Berhasil ✓\n-> Nomor : ${args[1]}`})
                                       } catch (err) { return reply(`[!] Story dengan nomor *${args[1]}* tidak tersedia di username *${args[0]}*`) }
-                                   }
+                                   } else { return reply(`Format salah!`) }
                                    } catch (err) {
                                      console.log(err)
                                      return reply('error')
                                    }
+                                case 'igtv':
+                                  try {
+                                   if (args.length < 1) return reply(`usernamenya mana sayang ? `)
+                                   if (args.length === 1){
+                                    const igtv = await fetchJson(`https://api.vhtear.com/igtv?query=${encodeURIComponent(args[0])}&apikey=Abil_Seno2k20`)
+                                    if(igtv.includes('error message')) return reply('[!] Username salah!')
+                                    if(igtv.result.igTv.length === 0) return reply(`[!] Username yang dituju tidak memiliki igtv!`)
+                                    igtv_cap = `Saya menemukan *${igtv.result.igTv.length}* instagram tv, di username *${args[0]}*\n=================\n`
+                                    no = 0
+                                    for (let kntl of igtv.result.igTv){
+                                     igtv_cap += `-> Nomor : ${no}\n-> Untuk mendownload : .igtv ${args[0]} ${no}`
+                                     no += 1
+                                    }
+                                   } else if(args.length === 2){
+                                     const igtv = await fetchJson(`https://api.vhtear.com/igstory?query=${args[0]}&apikey=Abil_Seno2k20`)
+                                     try {
+                                      const igtv_thumb = await getBuffer(igtv.result[Number(args[1])].urlImage)
+                                      client.sendMessage(from,igtv_thumb,image,{quoted:mek,caption:`-> Caption : ${igtv.result.igTv[Number(args[1])].caption}`})
+                                      const igtv_vid = await getBuffer(igtv.result.igTv[Number(args[1])].urlVideo)
+                                      client.sendMessage(from,igtv_vid,video,{quoted:mek,caption:`[!] Berhasil ✓\n-> Nomor : ${args[2]}`})
+                                     } catch (err) { return reply(`[!] IgTv dengan nomor *${args[1]}*, tidak ditemukan di username *${args[0]}*`) }
+                                   } else { return reply(`[!] Format salah!!`) }
+                                 } catch (err) {
+                                   console.log(err)
+                                   return reply('error')
+                                 }
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
