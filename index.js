@@ -833,6 +833,7 @@ async function starts() {
                                      console.log(err)
                                      return reply('error')
                                    }
+                                     break
                                 case 'igtv':
                                   try {
                                    if (args.length < 1) return reply(`usernamenya mana sayang ? `)
@@ -866,6 +867,7 @@ async function starts() {
                                    console.log(err)
                                    return reply('error')
                                  }
+                                   break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
