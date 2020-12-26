@@ -807,7 +807,7 @@ async function starts() {
                                 case 'igstory':
                                    try {
                                     if (args.length < 1) return reply('usernamenya mana sayang?')
-                                    if (args.length == 1){
+                                    if (args.length === 1){
                                      const igs1 = await fetchJson(`https://api.vhtear.com/igstory?query=${encodeURIComponent(args[1])}&apikey=Abil_Seno2k20`)
                                      if (igs1.result.status == "error message") return reply(`[!] Username salah!!`)
                                      if (igs1.result.itemlist == undefined || igs1.result.itemlist == null) return reply(`[!] Username yang dituju tidak memiliki story`)
@@ -817,6 +817,7 @@ async function starts() {
                                       igs_cap += `-> Type : ${mmk.type}\n-> Untuk mendownload : *.igstory ${igs1.result.owner_username} ${no}*\n=================`
                                       no += 1
                                      }
+                                     reply(igs_cap)
                                     }
                                    } catch (err) {
                                      console.log(err)
