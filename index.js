@@ -812,7 +812,7 @@ async function starts() {
                                      if (igs1.result.status == "error message") return reply(`[!] Username salah!!`)
                                      if (igs1.result.story.itemlist == undefined || igs1.result.story.itemlist == null) return reply(`[!] Username yang dituju tidak memiliki story`)
                                      igs_cap = `Saya menemukan *${igs1.result.story.itemlist.length}* story, di username *${igs1.result.owner_username}*\n=================\n`
-                                     no = 1
+                                     no = 0
                                      for (let mmk of igs1.result.story.itemlist){
                                       igs_cap += `-> Type : ${mmk.type}\n-> Untuk mendownload : *.igstory ${igs1.result.owner_username} ${no}*\n=================\n`
                                       no += 1
