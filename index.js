@@ -779,13 +779,14 @@ async function starts() {
                                     try {
                                      if (args.length < 1) return reply('usernamenya manah ?? ')
                                      reply(mess.wait)
-                                     const igs = await fetchJson(`https://api.vhtear.com/igprofile?query=${encodeURIComponent(body.slice(10))}&apikey=Abil_Seno2k20`)
+                                     const igs = await fetchJson(`https://api.vhtear.com/igprofile?query=${encodeURIComponent(body.slice(9))}&apikey=Abil_Seno2k20`)
                                      if (igs.result == null || igs.result == undefined) return reply('[!] Username salah !!')
                                      if (igs.result.is_private == true) { var privat = "Ya" }
                                      else if (igs.result.is_private == false) { var privat = "Tidak" }
                                      const igs_pic = await getBuffer(igs.result.picture)
                                      client.sendMessage(from,igs_pic,image,{quoted:mek,caption:`-> Username : @${igs.result.username}\n-> Nama : ${igs.result.full_name}\n-> Follower : ${igs.result.follower}\n-> Following : ${igs.result.follow}\n-> Jumlah Postingan : ${igs.result.post_count}\n-> Ini Private ? ${privat}`})
                                     } catch (err) { return reply('error') }
+                                    break
                                 case 'igdown':
                                    try {
                                     if (args.length < 1) return reply('mana linknya sayang ? ')
@@ -802,6 +803,7 @@ async function starts() {
                                     console.log(err)
                                     return reply('error')
                                    }
+                                   break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
