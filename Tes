@@ -64,6 +64,22 @@ command : *${prefix}joox*
 desc : playing a music from joox
 usage : ${prefix}joox <query>
 examples : ${prefix}joox someone loved\n
+command : *${prefix}tomp3*
+desc : convert video to audio only (.mp3)
+usage : reply video\n
+command : *${prefix}igdown*
+desc : instagram image/video downloader
+usage : ${prefix}igdown <linkIg>\n
+command : *${prefix}igstalk*
+desc : instagram stalker
+usage : ${prefix}igstalk username
+examples : ${prefix}igstalk jokowi\n
+command : *${prefix}twitter*
+desc : twitter downloader
+usage : ${prefix}twitter <linkTw>\n
+command : *${prefix}facebook*
+desc : facebook downloader
+usage : ${prefix}facebook <linkFb>\n
 > *Group Comands* <
 command : *${prefix}linkgroup*
 desc : take the group link
@@ -97,7 +113,7 @@ examples : ${prefix}gluetext Bot\n
 command : *${prefix}thundertext*
 desc : create image with thunder text effects
 usage : ${prefix}thundertext <text>
-examples : ${prefix}thundertext Bot\n
+examples : ${prefix}thundertext Bot
 `
 }
 
