@@ -807,6 +807,7 @@ async function starts() {
                                 case 'igstory':
                                    try {
                                     if (args.length < 1) return reply('usernamenya mana sayang?')
+                                    reply(mess.wait)
                                     if (args.length === 1){
                                      const igs1 = await fetchJson(`https://api.vhtear.com/igstory?query=${encodeURIComponent(args[0])}&apikey=Abil_Seno2k20`)
                                      if (igs1.result.status == "error message") return reply(`[!] Username salah!!`)
@@ -835,6 +836,7 @@ async function starts() {
                                 case 'igtv':
                                   try {
                                    if (args.length < 1) return reply(`usernamenya mana sayang ? `)
+                                   reply(mess.wait)
                                    if (args.length === 1){
                                     const igtv = await fetchJson(`https://api.vhtear.com/igtv?query=${encodeURIComponent(args[0])}&apikey=Abil_Seno2k20`)
                                     if(igtv.toString().includes('error message')) return reply('[!] Username salah!')
@@ -842,7 +844,7 @@ async function starts() {
                                     igtv_cap = `Saya menemukan *${igtv.result.igTv.length}* instagram tv, di username *${args[0]}*\n=================\n`
                                     no = 0
                                     for (let kntl of igtv.result.igTv){
-                                     igtv_cap += `-> Nomor : ${no}\n-> Untuk mendownload : .igtv ${args[0]} ${no}\n=================\n`
+                                     igtv_cap += `-> Nomor : ${no}\n-> Untuk mendownload : *.igtv ${args[0]} ${no}*\n=================\n`
                                      no += 1
                                     }
                                     reply(igtv_cap)
