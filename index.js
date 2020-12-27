@@ -103,6 +103,7 @@ async function starts() {
 			if (mek.key.fromMe) return
 			global.prefix
 			global.blocked
+                        const cnfig = {'Authorization':'59etwdvliBQ0qhxTfiLhWgB5FbGg8AZHeS4hkUKP'}
 			const content = JSON.stringify(mek.message)
 			const from = mek.key.remoteJid
 			const type = Object.keys(mek.message)[0]
@@ -864,10 +865,24 @@ async function starts() {
                                      }
                                    } else { return reply(`[!] Format salah!!`) }
                                  } catch (err) {
-                                   console.log(err)
+                                    console.log(err)
                                    return reply('error')
                                  }
                                    break
+                                case 'callingmeme':
+                                  if (args.length < 1) return reply(`teksnya mana um ? `)
+                                  reply(mess.wait)
+                                  const call = await fetch(`https://api.alexflipnote.dev/calling?text=${encodeURIComponent(body.slice(13))}`,{headers:cnfig})
+                                  const buffer3 = await call.buffer()
+                                  client.sendMessage(from,buffer3,image,{quoted:mek,caption:`[!] Sukses membuat calling meme dengan text *${body.slice(13)}*`})
+                                  break
+                                case 'drakememe':
+                                  if (args.length < 1) return reply(`textnya mana um ? `)
+                                  reply(mess.wait)
+                                  const drake = await fetch(`https://api.alexflipnote.dev/drake?top=${args[0]}&bottom=${args[1]}`,{headers:cnfig})
+                                  const buffer4 = await drake.buffer()
+                                  client.sendMessage(from,buffer4,image,{quoted:mek,caption:`[!] Sukses membuat drake meme dengan text1 *${args[0]}* dan text2 *${args[1]}*`})
+                                  break
 				default:
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
