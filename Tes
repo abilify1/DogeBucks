@@ -1,120 +1,35 @@
-const help = (prefix) => {
-	return `> *Sticker Commands* <
-command : *${prefix}sticker* or *${prefix}stiker*
-desc : convert image/gif/video to sticker
-usage : reply image/gif/video, or send image/gif/video with caption\n
-command : *${prefix}sticker nobg* or *${prefix}stiker nobg*
-desc : convert image to sticker while removing the background
-usage : reply image, or send image with caption\n
-command : *${prefix}toimg*
-desc : convert sticker to image
-usage : reply sticker\n
-command : *${prefix}tsticker* or *${prefix}tstiker*
-desc : convert text to sticker
-usage : *${prefix}tsticker text in here*\n
-> *Meme Commands* <
-command : *${prefix}meme*
-desc : random meme images [english]
-usage : just send the command\n
-command : *${prefix}memeindo*
-desc : random meme images [indo]
-usage : just send the command\n
-> *Others Commands* <
-command : *${prefix}gtts*
-desc : convert text to speech/audio
-usage : *${prefix}gtts [cc] [text]*\nexample : *${prefix}gtts ja On2-chan*\n
-command : *${prefix}loli*
-desc : random loli images
-usage : just send the command\n
-command : *${prefix}nsfwloli*
-desc : random nsfw loli images
-usage : just send the command\n
-command : *${prefix}url2img*
-desc : take web screenshots
-usage : *${prefix}url2img [tipe] [url]*\n
-command : *${prefix}simi*
-desc : your message will be replied to by simi
-usage : *${prefix}simi yourmessage*\n
-command : *${prefix}ocr*
-desc : take the text in the picture
-usage : reply image, or send image with caption\n
-command : *${prefix}wait*
-desc : search anime with image [ What Anime Is This/That ]
-usage : reply image, or send image with caption\n
-command : *${prefix}setprefix*
-desc : replace prefix
-usage : *${prefix}setprefix [text|optional]*\nexample : *${prefix}setprefix ?*
-note : This command can only be used by the bot owner\n
-command : *${prefix}anime*
-desc : search a anime
-usage : ${prefix}anime <query>\n
-command : *${prefix}ytmp3*
-desc : download youtube to mp3
-usage : ${prefix}ytmp3 <url>\n
-command : *${prefix}ytmp4*
-desc : download youtube to video
-usage : ${prefix}ytmp4 <url>\n
-command : *${prefix}tahta*
-desc : create image harta tahta wanita
-usage : ${prefix}tahta <teks>\n
-command : *${prefix}play*
-desc : playing a music from youtube
-usage : ${prefix}play <query>\n
-command : *${prefix}joox*
-desc : playing a music from joox
-usage : ${prefix}joox <query>
-examples : ${prefix}joox someone loved\n
-command : *${prefix}tomp3*
-desc : convert video to audio only (.mp3)
-usage : reply video\n
-command : *${prefix}igdown*
-desc : instagram image/video downloader
-usage : ${prefix}igdown <linkIg>\n
-command : *${prefix}igstalk*
-desc : instagram stalker
-usage : ${prefix}igstalk username
-examples : ${prefix}igstalk jokowi\n
-command : *${prefix}twitter*
-desc : twitter downloader
-usage : ${prefix}twitter <linkTw>\n
-command : *${prefix}facebook*
-desc : facebook downloader
-usage : ${prefix}facebook <linkFb>\n
-> *Group Comands* <
-command : *${prefix}linkgroup*
-desc : take the group link
-usage : just send the command\n
-note : can only be used when the bot becomes admin, and the one who sends the command is admin!\n
-command : *${prefix}tagall*
-desc : tags all group members including admins too
-usage : just send the command
-note : This command can be used if you are a group admin\n
-command : *${prefix}simih*
-desc : activate simi mode in the group
-usage : *${prefix}simih 1* to activate simi mode and *${prefix}simih 0* to deactivate simi mode
-note : This command can be used if you are a group admin\n
-> *Text Commands* <
-command : *${prefix}matrixtext*
-desc : create image with matrix style effects
-usage : ${prefix}matrixtext <text>
-examples : ${prefix}matrixtext Bot\n
-command : *${prefix}dropwatertext*
-desc : create image with drop water text effects
-usage : ${prefix}dropwatertext <text>
-examples : ${prefix}dropwatertext Bot\n
-command : *${prefix}luxurytext*
-desc : create image with luxury text effects
-usage : ${prefix}luxurytext <text>
-examples : ${prefix}luxurytext Bot\n
-command : *${prefix}gluetext*
-desc : create image with glue text effects
-usage : ${prefix}gluetext <text>
-examples : ${prefix}gluetext Bot\n
-command : *${prefix}thundertext*
-desc : create image with thunder text effects
-usage : ${prefix}thundertext <text>
-examples : ${prefix}thundertext Bot
-`
+#-*-coding:utf-8-*-
+import requests, json
+from random import randint
+from brainly22 import *
+import libmoji
+from multiprocessing.pool import ThreadPool
+def scan(p):
+ try:
+  quo = json.loads(requests.get("https://mhankbarbar.herokuapp.com/api/randomquotes").text)["quotes"]
+  #woe=p
+  #answer = json.loads(json.dumps(brainly(gsearch(quo+" site:brainly.co.id")[0])))
+  #que = answer["soal"]
+ # ans = answer["jawaban"]
+#  if "\n" in que: que = que.strip("\n")
+#  wow=json.loads(requests.get("https://random-word-api.herokuapp.com/word?number=1").text)[0]
+  tes = requests.post("https://live.vidio.com/v1/chat/send/message",headers={'Host':'live.vidio.com','content-length':'53','accept':'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01','x-csrf-token':'2DUwedhBijqP+OpfnZ0HBbB9SkrdNKpBfdlJJrL6P9dZAkp75nfKJNgYom126OaYJOE8Zgc/ToHOoKAYhNVu6w==','authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJ2aWRpby1jaGF0LXdlYiIsImlkIjo2MTkyNTE1NSwibmFtZSI6InVzZXI0OTQzYjMiLCJ1c2VybmFtZSI6InVzZXJfNDk0M2JfMyIsImF2YXRhcl91cmxfc21hbGwiOiJodHRwczovL3N0YXRpYy13ZWItcHJvZC12aWRpby5ha2FtYWl6ZWQubmV0L2Fzc2V0cy9kZWZhdWx0L3VzZXJfb3JpZ2luYWwtMzAyODJmNzUxMGY2YjE1OWZmMjhjMjM2NjllZGRhZTNmZDY4ODJjNmJmODg0MDI2ZDAzYWVjMjVjODU1YTExZi5wbmciLCJhdmF0YXJfdXJsX2JpZyI6Imh0dHBzOi8vc3RhdGljLXdlYi1wcm9kLXZpZGlvLmFrYW1haXplZC5uZXQvYXNzZXRzL2RlZmF1bHQvdXNlcl9vcmlnaW5hbC0zMDI4MmY3NTEwZjZiMTU5ZmYyOGMyMzY2OWVkZGFlM2ZkNjg4MmM2YmY4ODQwMjZkMDNhZWMyNWM4NTVhMTFmLnBuZyIsInZlcmlmaWVkX3VnYyI6bnVsbCwiaW5pdGlhbCI6IlUiLCJsaW5rcyI6Ii9AdXNlcl80OTQzYl8zIiwicm9sZSI6ImV4dGVybmFsX3VnYyIsInNob3dfYWRtaW5fYmFkZ2UiOmZhbHNlLCJiYWRnZXMiOiJbXSIsImRlZmF1bHRfYXZhdGFyIjp0cnVlLCJibGFja2xpc3RlZF9saXZlc3RyZWFtaW5ncyI6IltdIn0.X-0sgSzvA8hCRoHh8RAQo-GunpqJlEbxYqvdfXEr2R9RmNJTAaKQNc9TKV7NbJqop-FYH8MJHblZFn_8fX91kQ','user-agent':'Mozilla/5.0 (Linux; Android 9; vivo 1902) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.181 Mobile Safari/537.36','content-type':'application/x-www-form-urlencoded; charset=UTF-8'},data={'utf8':'✓','livestreaming_id':'204','content':quo,'button':''})
+  print (tes.text)
+ except Exception as e: print(e)
+hd={
+'Host':'live.vidio.com',
+'user-agent':'Mozilla/5.0 (Linux; Android 9; vivo 1902) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.181 Mobile Safari/537.36',
+'dnt':'1',
+'platform':'browser',
+'authorization':'Bearer eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJ2aWRpby1jaGF0LXdlYiIsImlkIjo2MDA5NzU3OSwibmFtZSI6IlNQQU1NRVIgSEFOREFMIiwidXNlcm5hbWUiOiJ3YXd0ZXJrZWp1dHNheWEiLCJhdmF0YXJfdXJsX3NtYWxsIjoiaHR0cHM6Ly9jZG4tcHJvZHVjdGlvbi10aHVtYm9yLXZpZGlvLmFrYW1haXplZC5uZXQvNHRjN01RZXFDSklVRWY0QVY1T2V0eExUUUZ3PS8xNDR4MTQ0L2ZpbHRlcnM6cXVhbGl0eSg4MCk6c3RyaXBfaWNjKCkvdmlkaW8td2ViLXByb2QtdXNlci91cGxvYWRzL3VzZXIvYXZhdGFyLzYwMDk3NTc5L3dhd3RlcmtlanV0c2F5YS0yNmU4MjkuanBnIiwiYXZhdGFyX3VybF9iaWciOiJodHRwczovL2Nkbi1wcm9kdWN0aW9uLXRodW1ib3ItdmlkaW8uYWthbWFpemVkLm5ldC9WRzVZQU81SzVST0JCejI2WHB1Q2ZOVUhSTDg9LzE0NHgxNDQvZmlsdGVyczpxdWFsaXR5KDkwKTpzdHJpcF9pY2MoKS92aWRpby13ZWItcHJvZC11c2VyL3VwbG9hZHMvdXNlci9hdmF0YXIvNjAwOTc1Nzkvd2F3dGVya2VqdXRzYXlhLTI2ZTgyOS5qcGciLCJ2ZXJpZmllZF91Z2MiOnRydWUsImluaXRpYWwiOiJTSCIsImxpbmtzIjoiL0B3YXd0ZXJrZWp1dHNheWEiLCJyb2xlIjoiZXh0ZXJuYWxfdWdjIiwic2hvd19hZG1pbl9iYWRnZSI6ZmFsc2UsImJhZGdlcyI6IltcInByZW1pZXJcIl0iLCJkZWZhdWx0X2F2YXRhciI6bnVsbCwiYmxhY2tsaXN0ZWRfbGl2ZXN0cmVhbWluZ3MiOiJbXSJ9.ETw5bAltbgV4SeQYA6L0YNgWRja9cPHWRSL59943cewNYWAM52ksFRJoFbOwABPTpyPRqdsTfhp8QNi-Ah4y3Q',
+'accept':'*/*',
+'origin':'https://m.vidio.com'
 }
-
-exports.help = help
+#while True:
+ #bot = requests.get("https://live.vidio.com/conversations/870/messages/100",headers=hd)
+ #username = json.loads(bot.text)[-1]["user"]["name"]
+ #meg = json.loads(bot.text)[-1]["content"]
+# msg = json.loads(bot.text)[-1]["content"].split(" ")
+# if "spam" in " ".join(msg[0:]):
+while True:
+ ThreadPool(40).map(scan,open('adlog').read().splitlines())
